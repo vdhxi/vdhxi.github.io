@@ -5,55 +5,28 @@ weight: 1
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
 
 ### Mục tiêu tuần 8:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Xây dựng quy trình giao hàng sau khi hoàn tất phiên đấu giá
+* Xây dựng cơ chế ràng buộc, kiểm tra điều kiện để tránh việc người dùng spam tạo phiên đấu giá ảo trong hệ thống
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc                                                                                                                                                                       | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|-----------------|----------------|
+| 2   | - Thêm điều kiện kiểm tra trong cơ chế xác thực dữ liệu để người dùng tạo phiên đấu giá mới <br/> Chỉnh sử logic code ở các chức năng có liên quan                              | 27/10/2025   | 27/10/2025      |                |
+| 3   | - Tạo các API để cập nhật quy trình giao hàng sau đấu giá: <br/> + Người bán tạo đơn hàng <br/> + Người dùng xác nhận đơn hàng <br/> + Cho phép người bán/mua cập nhật đơn hàng | 28/10/2025   | 28/10/2025      |                |
+| 4   | - Tạo các API cho phép cập nhật trạng thái đơn hàng: <br/> + Hoàn thành <br/> + Huỷ đơn hàng bởi người mua/bán <br/> + Tạo yêu cầu trả hàng hoàn tiền                           | 29/10/2025   | 29/10/2025      |                |
+| 5   | - Triển khai quy trình trả hàng hoàn tiền được xử lí bởi role staff <br/> - Cập nhật số dư ví và lịch sử giao dịch của người dùng trong các trường hợp                          | 30/10/2025   | 30/10/2025      |                |
+| 6   | - API testing, kiểm tra và khắc phục các lỗi xuất hiện trong quá trình phát triển                                                                                               | 31/10/2025   | 31/10/2025      |                |
 
 ### Kết quả đạt được tuần 8:
+* Xây dựng hoàn tất được quy trình giao hàng sau đấu giá:
+  * Taọ đơn hàng.
+  * Người mua/bán xác nhận, cập nhật thông tin.
+  * Triển khai hoàn tất quy trình xác nhận hoàn thành, huỷ bỏ, trả hàng hoàn tiền.
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* Cập nhật điều kiện tạo phiên đấu giá, chỉnh sửa logic code ở những API khác để phù hợp với business rule.
 
 

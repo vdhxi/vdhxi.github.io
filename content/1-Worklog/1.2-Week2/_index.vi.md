@@ -5,55 +5,30 @@ weight: 1
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+
 
 
 ### Mục tiêu tuần 2:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Hiểu được các kiến thức cần thiết khi hosting website trên môi trường cloud
+* Xây dựng và deploy thành công website trên môi trường cloud
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Thứ | Công việc                                                                                                                                                                                      | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| --- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|-----------------| ----------------------------------------- |
+| 2   | - Tìm hiểu về máy chủ ảo EC2<br/> - Thực hành tạo máy chủ EC2, cấu hình security group, kết nối đến EC2 bằng mobaXterm<br/>- Hosting backend tại máy chủ EC2                                   | 15/09/2025   | 15/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 3   | - Tìm hiểu về AWS S3<br/> - Thực hành tạo S3 bucket, upload, quản lí file<br/> - Thực hành hosting web với S3                                                                                  | 16/09/2025   | 16/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | - Tìm hiểu về AWS RDS<br/> - Thực hành kết nối EC2 và RDS                                                                                                                                      | 17/09/2025   | 17/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 5   | - Tìm hiểu về Route53, CloudFront, AWS SES<br/> - Cấu hình quản lí dns cá nhân thông qua Route53<br/>- Cấu hình AWS SES để gửi mail                                                            | 18/09/2025   | 18/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 6   | - Thực hành hosting website kết hợp EC2, AWS S3, Route53, CloudFront và RDS<br/>- Config security group để có thể truy cập SSH vào máy chủ để quản lí<br/> - Config elastic IP cho máy chủ EC2 | 19/09/2025   | 19/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
 
 ### Kết quả đạt được tuần 2:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Tìm hiểu được kiến thức về các dịch vụ cơ bản khi xây dựng website
+* Ứng dụng được các dịch vụ đã tìm hiểu vào việc hosting website
+* Hiểu cách để deploy một website thành công trên môi trường cloud
+* Cấu hình được security group để truy cập SSH đến website, cấu hình và quản lí máy chủ
+  * Cài đặt java cho hosting backend java
+  * Cài đặt certbot để đăng kí SSL
+  * Cài đặt nginx để chuyển truy cập đến máy chủ từ port 8080 giao thức HTTP sang port 443 giao thức HTTPS

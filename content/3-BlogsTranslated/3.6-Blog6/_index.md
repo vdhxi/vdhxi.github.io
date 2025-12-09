@@ -5,122 +5,75 @@ weight: 1
 chapter: false
 pre: " <b> 3.6. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# Announcing the updated AWS Well-Architected Generative AI Lens
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+We are delighted to announce an update to the [AWS Well-Architected Generative AI Lens](https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lens.html). 
+This update features several new sections of the Well-Architected Generative AI Lens, including new best practices, advanced scenario guidance, and improved preambles on 
+responsible AI, data architecture, and agentic workflows.
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+The AWS Well-Architected Framework provides architectural best practices for designing and operating [generative AI](https://aws.amazon.com/generative-ai/) workloads on AWS. 
+The Generative AI Lens uses the Well-Architected Framework to outline the steps for performing a Well-Architected Framework review for your generative AI workloads.
 
----
+![](/static/images/blog-6/image-1.png)
 
-## Architecture Guidance
+The Generative AI Lens provides a consistent approach for customers to evaluate architectures that use large language models (LLMs) to achieve their business goals. This lens addresses 
+common considerations relevant to model selection, prompt engineering, model customization, workload integration, and continuous improvement. Specifically excluded from the Generative AI Lens 
+are best practices associated with model training and advanced model customization techniques. We identify best practices that help you architect your cloud-based applications and workloads 
+according to AWS Well-Architected design principles gathered from supporting thousands of customer implementations.
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+The Generative AI Lens joins a collection of Well-Architected lenses published under
+[AWS Well-Architected Lenses](https://aws.amazon.com/architecture/well-architected/?wa-lens-whitepapers.sort-by=item.additionalFields.sortDate&wa-lens-whitepapers.sort-order=desc&awsm.page-wa-lens-whitepapers=1&wa-guidance-whitepapers.sort-by=item.additionalFields.sortDate&wa-guidance-whitepapers.sort-order=desc). 
+For more information on the lens itself, check out the [launch announcement post](https://aws.amazon.com/blogs/architecture/announcing-the-aws-well-architected-generative-ai-lens/).
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+## What has changed in the updated Generative AI Lens?
 
-**The solution architecture is now as follows:**
+The updated Generative AI Lens incorporates several new additions for customers to review. These additions keep the lens on-pace with the rapidly growing area of generative AI, helping customers 
+stay up to date with architectural best practices.
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+### Amazon SageMaker HyperPod guidance
 
----
+The updated lens features additional guidance for users of [Amazon SageMaker HyperPod](https://aws.amazon.com/sagemaker/ai/hyperpod/). SageMaker HyperPod is a highly resilient model training and hosting 
+service that you can use to orchestrate complex, long-running generative AI workflows in the cloud. These workflows could be foundation model pre-training or serving model inference at scale.
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+We are excited to announce additional guidance for customers using SageMaker HyperPod in the Generative AI Lens. This guidance is built into the existing best practices, expanding the guidance for covered 
+services to include SageMaker capabilities. This guidance joins the existing guidance on [Amazon Bedrock](https://aws.amazon.com/bedrock/), [Amazon Q Business](https://aws.amazon.com/q/business/), 
+[Amazon Q Developer](https://aws.amazon.com/q/developer/), and [Amazon SageMaker AI](https://aws.amazon.com/sagemaker/ai/).
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+### Responsible AI preamble
+The updated responsible AI preamble now includes a detailed discussion on the eight core dimensions of [responsible AI](https://aws.amazon.com/ai/responsible-ai/) as described by AWS. 
+Customers can now learn more about the eight dimensions of responsibly developed AI systems directly within the lens. This is required reading for customers in all stages of their generative AI journey.
 
----
+### Data architecture preamble
+The updated data architecture preamble reviews strategic considerations associated with a modern data architecture supporting generative AI workloads. This section provides customers with a view into 
+the high-level decisions and considerations needed to architect a data system that services generative AI workloads.
 
-## Technology Choices and Communication Scope
+### Agentic AI preamble
+New to the generative AI lens is the agentic AI preamble. Agentic systems, while technically classified as a subset of distributed computing, play an important role in modern generative AI workloads. 
+This preamble introduces customers to a sampling of architecture paradigms common in agentic systems powered by foundation models.
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+### Scenarios
+The Generative AI Lens now includes eight architecture scenarios. These scenarios cover a range of common generative AI powered business applications, including autonomous call centers, knowledge 
+worker co-pilots, and multi-tenant generative AI service systems. The scenario section provides specific guidance for applying generative AI technologies to common business problems. The following image 
+is an example of one of the new scenarios now included in the Generative AI Lens.
 
----
+![](/static/images/blog-6/image-2.png)
 
-## The Pub/Sub Hub
+## Who should use the Generative AI Lens?
+The Generative AI Lens is useful to many roles. Business leaders can use this lens to acquire a broader appreciation of the end-to-end implementation and benefits of generative AI. Data scientists and 
+engineers can read this lens to understand how to use, secure, and gain insights from their data at scale. Risk and compliance leaders can understand how generative AI is implemented responsibly by providing 
+compliance with regulatory and governance requirements.
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+## Next steps
+The updated [Well-Architected Generative AI Lens](https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lens.html) is available now. Use the lens as a framework to verify that your 
+generative AI workloads are architected with operational excellence, security, reliability, performance efficiency, cost optimization, and sustainability in mind.
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+If you require support on the implementation or assessment of your generative AI workloads, please contact your AWS Solutions Architect or Account Representative.
 
----
+Special thanks to everyone across the AWS Solution Architecture, AWS Professional Services, and Machine Learning communities who contributed to the updated Generative AI Lens. These contributions encompassed 
+diverse perspectives, expertise, backgrounds, and experiences in developing the new AWS Well-Architected Generative AI Lens.
 
-## Core Microservice
+For additional reading, refer to the [AWS Well-Architected Framework and pillar whitepapers](https://aws.amazon.com/architecture/well-architected/?wa-lens-whitepapers.sort-by=item.additionalFields.sortDate&wa-lens-whitepapers.sort-order=desc&wa-guidance-whitepapers.sort-by=item.additionalFields.sortDate&wa-guidance-whitepapers.sort-order=desc), 
+or use the [AWS Well-Architected Machine Learning Lens](https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/machine-learning-lens.html) and its custom lens accessible from the 
+AWS Well-Architected Tool.
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
-
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
-
----
-
-## Front Door Microservice
-
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
-
----
-
-## Staging ER7 Microservice
-
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
-
----
-
-## New Features in the Solution
-
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn

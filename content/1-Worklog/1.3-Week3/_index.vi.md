@@ -5,55 +5,31 @@ weight: 1
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+
 
 
 ### Mục tiêu tuần 3:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Tìm hiểu và thực hành về quy trình CI/CD tự động
+* Xây dựng dự án website đấu giá dựa trên các service mà AWS hiện đang cung cấp
+
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Thứ | Công việc                                                                                                                                                                      | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                                                                                                                            |
+| --- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| 2   | - Tìm hiểu về Gitlab CI, cách vận hành của gitlab CI<br/>- Thực hành sử dụng Gitlab CI để tự động deploy code khi commit                                                       | 22/09/2025   | 22/09/2025      | https://docs.gitlab.com/ci/ <br/> https://codefresh.io/learn/gitlab-ci/                                                                   |
+| 3   | - Phân tích dự án website đấu giá:<br/> - Các use case trong hệ thống <br/> - Các đối tượng người dùng của hệ thống <br/> - Các service sẽ sử dụng để triển khai các tính năng | 23/09/2025   | 23/09/2025      |                                                                                                  |
+| 4   | - Tìm hiểu về AWS Rekognition và AWS Textract <br/> - Thực hành tích hợp Rekognition và Textract vào ứng dụng Springboot                                                       | 24/09/2025   | 24/09/2025      | <https://cloudjourney.awsstudygroup.com/> <br/> https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition |
+| 5   | - Thiết kế database cho hệ thống web đấu giá                                                                                                                                   | 25/09/2025   | 26/09/2025      |                                                                                                |
+| 6   | - Thiết kế database cho hệ thống web đấu giá (tiếp tục)                                                                                                                        | 26/09/2025   | 26/09/2025      |                                                                                                |
 
 
 ### Kết quả đạt được tuần 3:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Áp dụng được quy trình CI/CD trong việc phát triển dự án
+* Nắm được cách tích hợp, sử dụng Rekognition và Textract vào ứng dụng Springboot
+* Phân tích được yêu cầu, các use case, các vai trò của người dùng trong hệ thống
+* Thiết kế được database phù hợp với quy mô của hệ thống
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
 
 

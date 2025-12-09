@@ -6,122 +6,50 @@ chapter: false
 pre: " <b> 3.6. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Công bố AWS Well-Architected Generative AI Lens được cập nhật
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+Chúng tôi vui mừng thông báo bản cập nhật cho [AWS Well-Architected Generative AI Lens](https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lens.html). Bản cập nhật này có một số phần mới của Well-Architected Generative AI Lens, bao gồm các thực tiễn tốt nhất mới, hướng dẫn kịch bản nâng cao và các lời mở đầu được cải thiện về AI có trách nhiệm, kiến trúc dữ liệu và quy trình làm việc agentic.
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+AWS Well-Architected Framework cung cấp các thực tiễn kiến trúc tốt nhất để thiết kế và vận hành các workload [generative AI](https://aws.amazon.com/generative-ai/) trên AWS. Generative AI Lens sử dụng Well-Architected Framework để phác thảo các bước thực hiện đánh giá Well-Architected Framework cho các workload generative AI của bạn.
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+![](/static/images/blog-6/image-1.png)
 
----
+Generative AI Lens cung cấp một cách tiếp cận nhất quán cho khách hàng để đánh giá các kiến trúc sử dụng các mô hình ngôn ngữ lớn (LLM) để đạt được các mục tiêu kinh doanh của họ. Lens này giải quyết các cân nhắc chung liên quan đến lựa chọn mô hình, kỹ thuật prompt, tùy chỉnh mô hình, tích hợp workload và cải tiến liên tục. Loại trừ cụ thể khỏi Generative AI Lens là các thực tiễn tốt nhất liên quan đến đào tạo mô hình và các kỹ thuật tùy chỉnh mô hình nâng cao. Chúng tôi xác định các thực tiễn tốt nhất giúp bạn kiến trúc các ứng dụng và workload dựa trên đám mây của mình theo các nguyên tắc thiết kế AWS Well-Architected được thu thập từ việc hỗ trợ hàng nghìn triển khai của khách hàng.
 
-## Hướng dẫn kiến trúc
+Generative AI Lens tham gia vào bộ sưu tập các Well-Architected lens được xuất bản dưới [AWS Well-Architected Lenses](https://aws.amazon.com/architecture/well-architected/?wa-lens-whitepapers.sort-by=item.additionalFields.sortDate&wa-lens-whitepapers.sort-order=desc&awsm.page-wa-lens-whitepapers=1&wa-guidance-whitepapers.sort-by=item.additionalFields.sortDate&wa-guidance-whitepapers.sort-order=desc). Để biết thêm thông tin về chính lens này, hãy xem [bài đăng thông báo ra mắt](https://aws.amazon.com/blogs/architecture/announcing-the-aws-well-architected-generative-ai-lens/).
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+## Có gì thay đổi trong Generative AI Lens được cập nhật?
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+Generative AI Lens được cập nhật kết hợp một số bổ sung mới để khách hàng xem xét. Những bổ sung này giữ cho lens bắt kịp với lĩnh vực generative AI đang phát triển nhanh chóng, giúp khách hàng cập nhật các thực tiễn kiến trúc tốt nhất.
 
-**Kiến trúc giải pháp bây giờ như sau:**
+### Hướng dẫn Amazon SageMaker HyperPod
 
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Lens được cập nhật có hướng dẫn bổ sung cho người dùng [Amazon SageMaker HyperPod](https://aws.amazon.com/sagemaker/ai/hyperpod/). SageMaker HyperPod là một dịch vụ lưu trữ và đào tạo mô hình có khả năng phục hồi cao mà bạn có thể sử dụng để điều phối các quy trình làm việc generative AI phức tạp, chạy lâu dài trên đám mây. Các quy trình làm việc này có thể là đào tạo trước mô hình nền tảng hoặc phục vụ suy luận mô hình ở quy mô lớn.
 
----
+Chúng tôi rất vui mừng được thông báo hướng dẫn bổ sung cho khách hàng sử dụng SageMaker HyperPod trong Generative AI Lens. Hướng dẫn này được tích hợp vào các thực tiễn tốt nhất hiện có, mở rộng hướng dẫn cho các dịch vụ được bao gồm để bao gồm các khả năng của SageMaker. Hướng dẫn này tham gia vào hướng dẫn hiện có về [Amazon Bedrock](https://aws.amazon.com/bedrock/), [Amazon Q Business](https://aws.amazon.com/q/business/), [Amazon Q Developer](https://aws.amazon.com/q/developer/), và [Amazon SageMaker AI](https://aws.amazon.com/sagemaker/ai/).
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+### Lời mở đầu về Responsible AI
+Lời mở đầu về AI có trách nhiệm được cập nhật hiện bao gồm một cuộc thảo luận chi tiết về tám khía cạnh cốt lõi của [AI có trách nhiệm](https://aws.amazon.com/ai/responsible-ai/) như được mô tả bởi AWS. Khách hàng hiện có thể tìm hiểu thêm về tám khía cạnh của các hệ thống AI được phát triển có trách nhiệm trực tiếp trong lens. Đây là bài đọc bắt buộc đối với khách hàng trong tất cả các giai đoạn của hành trình generative AI của họ.
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+### Lời mở đầu về kiến trúc dữ liệu
+Lời mở đầu về kiến trúc dữ liệu được cập nhật xem xét các cân nhắc chiến lược liên quan đến kiến trúc dữ liệu hiện đại hỗ trợ các workload generative AI. Phần này cung cấp cho khách hàng cái nhìn về các quyết định và cân nhắc cấp cao cần thiết để kiến trúc một hệ thống dữ liệu phục vụ các workload generative AI.
 
----
+### Lời mở đầu về Agentic AI
+Mới đối với generative AI lens là lời mở đầu về agentic AI. Các hệ thống agentic, mặc dù về mặt kỹ thuật được phân loại là một tập hợp con của điện toán phân tán, đóng một vai trò quan trọng trong các workload generative AI hiện đại. Lời mở đầu này giới thiệu cho khách hàng một mẫu các mô hình kiến trúc phổ biến trong các hệ thống agentic được hỗ trợ bởi các mô hình nền tảng.
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+### Các kịch bản
+Generative AI Lens hiện bao gồm tám kịch bản kiến trúc. Các kịch bản này bao gồm một loạt các ứng dụng kinh doanh được hỗ trợ bởi generative AI phổ biến, bao gồm các trung tâm cuộc gọi tự động, đồng nghiệp ảo cho nhân viên tri thức và các hệ thống dịch vụ generative AI đa thuê bao (multi-tenant). Phần kịch bản cung cấp hướng dẫn cụ thể để áp dụng các công nghệ generative AI cho các vấn đề kinh doanh phổ biến. Hình ảnh sau đây là một ví dụ về một trong những kịch bản mới hiện được bao gồm trong Generative AI Lens.
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+![](/static/images/blog-6/image-2.png)
 
----
+## Ai nên sử dụng Generative AI Lens?
+Generative AI Lens hữu ích cho nhiều vai trò. Các nhà lãnh đạo doanh nghiệp có thể sử dụng lens này để có được sự đánh giá rộng hơn về việc triển khai end-to-end và lợi ích của generative AI. Các nhà khoa học dữ liệu và kỹ sư có thể đọc lens này để hiểu cách sử dụng, bảo mật và thu được thông tin chi tiết từ dữ liệu của họ ở quy mô lớn. Các nhà lãnh đạo rủi ro và tuân thủ có thể hiểu cách generative AI được triển khai có trách nhiệm bằng cách cung cấp sự tuân thủ các yêu cầu quy định và quản trị.
 
-## The pub/sub hub
+## Các bước tiếp theo
+[Well-Architected Generative AI Lens](https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lens.html) được cập nhật hiện đã có sẵn. Sử dụng lens như một khuôn khổ để xác minh rằng các workload generative AI của bạn được kiến trúc với sự xuất sắc trong vận hành, bảo mật, độ tin cậy, hiệu quả hiệu năng, tối ưu hóa chi phí và tính bền vững trong tâm trí.
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+Nếu bạn cần hỗ trợ về việc triển khai hoặc đánh giá các workload generative AI của mình, vui lòng liên hệ với Kiến trúc sư Giải pháp AWS hoặc Đại diện Tài khoản của bạn.
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+Đặc biệt cảm ơn tất cả mọi người trong các cộng đồng Kiến trúc Giải pháp AWS, Dịch vụ Chuyên nghiệp AWS và Machine Learning đã đóng góp cho Generative AI Lens được cập nhật. Những đóng góp này bao gồm các quan điểm, chuyên môn, nền tảng và kinh nghiệm đa dạng trong việc phát triển AWS Well-Architected Generative AI Lens mới.
 
----
-
-## Core microservice
-
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
-
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
-
----
-
-## Front door microservice
-
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
-
----
-
-## Staging ER7 microservice
-
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
-
----
-
-## Tính năng mới trong giải pháp
-
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+Để đọc thêm, hãy tham khảo [AWS Well-Architected Framework và các sách trắng về trụ cột](https://aws.amazon.com/architecture/well-architected/?wa-lens-whitepapers.sort-by=item.additionalFields.sortDate&wa-lens-whitepapers.sort-order=desc&wa-guidance-whitepapers.sort-by=item.additionalFields.sortDate&wa-guidance-whitepapers.sort-order=desc), hoặc sử dụng [AWS Well-Architected Machine Learning Lens](https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/machine-learning-lens.html) và lens tùy chỉnh của nó có thể truy cập từ AWS Well-Architected Tool.

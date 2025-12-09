@@ -1,57 +1,29 @@
 ---
-title: "Week 4 Worklog"
+title: "Worklog Week 4"
 date: "`r Sys.Date()`"
 weight: 1
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
 
-### Week 4 Objectives:
+### Week 4 Goals:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Build APIs for login, registration, and account recovery
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to be implemented this week:
+| Day | Task | Start Date | End Date | Resource |
+| --- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|-----------------|---------------------------------------------------------------------------------------------|
+| Mon | - Research JWT Token <br/> - Design login process combined with real user verification, avoiding creation of multiple virtual accounts<br/> - Build account verification API based on Spring Security, using Jwt token | 29/09/2025   | 29/09/2025      | https://www.youtube.com/watch?v=1XC5WPQkXek&list=PL2xsxmVse9IaxzE8Mght4CFltGOqcG6FC&index=9 |
+| Tue | - Research Java Mail Sender <br/> - Implement email sending feature using Java Mail Sender <br/> - Build API to send email to specific address <br/> - Implement email OTP security feature | 30/09/2025   | 30/09/2025      | https://mailtrap.io/blog/java-send-email/                                                   |
+| Wed | - Research Google Authenticator TOTP 2-step verification system<br/> - Integrate TOTP 2-step verification feature into the system <br/> - Build OTP verification API                                                | 1/10/2025    | 1/10/2025       | https://www.youtube.com/watch?v=2m2yuaomCTc                                                 |
+| Thu | - Design safe and secure password recovery process <br/> - Implement code, combine with other APIs to implement password recovery process                                                                    | 2/10/2025    | 2/10/2025       |                                                                                             |
+| Fri | - API testing, fixing bugs during implementation to complete features and prepare for use in other processes requiring security                                                              | 3/10/2025    | 3/10/2025       |                                                                                             |
 
 
-### Week 4 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+### Week 4 Results:
+* Built APIs serving processes:
+  * Registration: checked for duplicates, while limiting spam creation of junk accounts.
+  * Login: built login process, user information verification based on JWT token. Also integrated TOTP to increase security.
+  * Password recovery: built secure password recovery process, only the real owner can recover password by verifying via email and TOTP.
+  * Designed information verification steps, linked together to create a strict security process for security purposes, only the owner can perform.

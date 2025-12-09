@@ -1,57 +1,32 @@
 ---
-title: "Week 3 Worklog"
+title: "Worklog Week 3"
 date: "`r Sys.Date()`"
 weight: 1
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+
 
 
 ### Week 3 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Learn and practice automated CI/CD process
+* Build an auction website project based on services that AWS currently provides
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+
+### Tasks to implement this week:
+| Day | Task                                                                                                                                                                           | Start Date | End Date   | Resources                                                                                                                                 |
+| --- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| Mon | - Learn about Gitlab CI, how Gitlab CI operates<br/>- Practice using Gitlab CI to automatically deploy code when committing                                                    | 22/09/2025 | 22/09/2025 | https://docs.gitlab.com/ci/ <br/> https://codefresh.io/learn/gitlab-ci/                                                                   |
+| Tue | - Analyze auction website project:<br/> - Use cases in the system <br/> - User roles of the system <br/> - Services to be used to implement features                           | 23/09/2025 | 23/09/2025 |                                                                                                                                           |
+| Wed | - Learn about AWS Rekognition and AWS Textract <br/> - Practice integrating Rekognition and Textract into Springboot application                                               | 24/09/2025 | 24/09/2025 | <https://cloudjourney.awsstudygroup.com/> <br/> https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition |
+| Thu | - Design database for auction web system                                                                                                                                       | 25/09/2025 | 26/09/2025 |                                                                                                                                           |
+| Fri | - Design database for auction web system (continued)                                                                                                                           | 26/09/2025 | 26/09/2025 |                                                                                                                                           |
 
 
 ### Week 3 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Applied CI/CD process in project development
+* Grasped how to integrate and use Rekognition and Textract in Springboot application
+* Analyzed requirements, use cases, user roles in the system
+* Designed database suitable for the scale of the system

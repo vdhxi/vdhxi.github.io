@@ -1,57 +1,38 @@
 ---
-title: "Week 5 Worklog"
+title: "Worklog Week 5"
 date: "`r Sys.Date()`"
 weight: 1
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
 
-### Week 5 Objectives:
+### Week 5 Goals:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Design and implement APIs to:
+  * Change account security information
+  * Manage (add, edit, delete) system categories
+  * Manage (edit) user information
+  * Build account verification process using Rekognition and Textract
+  * Manage (add, edit, delete) auctions
+* Understand and apply Redis to cache queries to increase system performance
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to be implemented this week:
+| Day | Task | Start Date | End Date | Resource |
+| --- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|-----------------|------------------------------------------------------------------------------------------------------------------------------|
+| Mon | - Build API to change login information, account security information                                                                                          | 6/10/2025    | 6/10/2025       |                                                                                                                              |
+| Tue | - Build API to manage system categories, manage user information <br/>- Build user information verification process using Rekognition and Textract   | 7/10/2025    | 7/10/2025       |                                                                                                                              |
+| Wed | - Build API to manage auctions                                                                                                                          | 8/10/2025    | 8/10/2025       |                                                                                                                              |
+| Thu | - Research Redis <br/> - Use Redis to cache queries to increase performance, reduce load on database                                                                  | 9/10/2025    | 9/10/2025       | https://spring.io/projects/spring-data-redis#learn <br/> https://viblo.asia/p/huong-dan-spring-boot-redis-aWj53NPGl6m <br/> https://kungfutech.edu.vn/bai-viet/spring-boot/su-dung-redis-trong-spring-boot |
+| Fri | - API testing, fixing bugs arising during development                                                                                                 | 10/10/2025   | 10/10/2025      |                                                                                                                              |
 
 
-### Week 5 Achievements:
+### Week 5 Results:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Completed implementation of the following APIs:
+  * API for users to change password, change email, verify password.
+  * API to manage addresses, product categories: Add new, edit, disable.
+  * API for users to update personal information: username, avatar.
+  * API for staff to edit user information in data fields requiring access in special use cases: authentication status, lock (unlock) login, remove transaction limit time.
+  * API to verify user information based on selfie and ID documents: use Rekognition's Face Compare feature to match faces and Textract's Analyze Document ID to extract necessary data.
+  * Configured Redis to cache results when querying database, reducing load on database system as the auction web is a high-performance system.

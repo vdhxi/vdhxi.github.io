@@ -5,122 +5,68 @@ weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+# Lợi ích về hiệu năng của các phiên bản Amazon EC2 R8a tối ưu hóa bộ nhớ thế hệ mới
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Gần đây, chúng tôi công bố việc cung cấp rộng rãi các phiên bản Amazon EC2 R8a — bổ sung mới nhất vào dòng các phiên bản tối ưu hóa bộ nhớ sử dụng CPU AMD. Những phiên bản này được trang bị bộ xử lý AMD EPYC thế hệ thứ 5 (tên mã “Turin”) với tần số tối đa lên tới 4,5 GHz. Trong bài viết này, tôi sẽ thử nghiệm các phiên bản đó và tiến hành benchmark MySQL — nhưng trước hết, hãy cùng điểm qua những đặc điểm quan trọng bạn nên biết về các phiên bản này.
 
 ---
 
-## Hướng dẫn kiến trúc
+## Đặc điểm nổi bật của phiên bản R8a
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+Mỗi vCPU trên một instance R8a tương ứng với một lõi CPU vật lý (điều mà AWS bắt đầu áp dụng từ các thế hệ AMD thế hệ thứ 7). Điều này nghĩa là không có công nghệ đa luồng đồng thời (SMT). Mỗi vCPU được gán lõi vật lý riêng biệt — giúp mang lại hiệu năng ổn định và nhất quán hơn, bởi tránh được việc chia sẻ tài nguyên hay xung đột giữa các luồng; điều này đặc biệt quan trọng cho các workload nhạy cảm với hiệu năng hoặc độ trễ.
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+Khi đánh giá và chuyển sang sử dụng R8a, bạn nên xác định lại ngưỡng sử dụng CPU — vì bạn có thể tận dụng nhiều hơn CPU của mỗi instance mà không làm ảnh hưởng đến SLA (Service Level Agreement) của workload.
 
-**Kiến trúc giải pháp bây giờ như sau:**
+> *R8a hỗ trợ cấu hình rất rộng — lên đến 192 vCPU với 1.536 GiB RAM. Dưới đây là bảng thông số chi tiết các kích cỡ phổ biến:*
 
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
-
----
-
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
-
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
-
----
-
-## Lựa chọn công nghệ và phạm vi giao tiếp
-
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+| Instance size | vCPU | Memory (GiB) | Instance storage | Network bandwidth (Gbps) | EBS bandwidth (Gbps) |
+|---|---|---|---|---|---|
+| r8a.medium | 1 | 8 | EBS Only | Up to 12.5 | Up to 10 |
+| r8a.large | 2 | 16 | EBS Only | Up to 12.5 | Up to 10 |
+| r8a.xlarge | 4 | 32 | EBS Only | Up to 12.5 | Up to 10 |
+| r8a.2xlarge | 8 | 64 | EBS Only | Up to 15 | Up to 10 |
+| r8a.4xlarge | 16 | 128 | EBS Only | Up to 15 | Up to 10 |
+| r8a.8xlarge | 32 | 256 | EBS Only | 15 | 10 |
+| r8a.12xlarge | 48 | 384 | EBS Only | 22.5 | 15 |
+| r8a.16xlarge | 64 | 512 | EBS Only | 30 | 20 |
+| r8a.24xlarge | 96 | 768 | EBS Only | 40 | 30 |
+| r8a.48xlarge | 192 | 1536 | EBS Only | 75 | 60 |
+| r8a.metal-24xl | 96 | 768 | EBS Only | 40 | 30 |
+| r8a.metal-48xl | 192 | 1536 | EBS Only | 75 | 60 |
 
 ---
 
-## The pub/sub hub
+## Thử nghiệm hiệu năng MySQL với HammerDB
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+Các phiên bản R8a là lựa chọn tuyệt vời cho cơ sở dữ liệu MySQL, vì vậy tôi cho rằng đây là bối cảnh phù hợp để minh họa những khả năng của các phiên bản này. Để kiểm thử MySQL, tôi sử dụng một loạt script do các đồng nghiệp của tôi phát triển nhằm theo dõi hiệu năng MySQL trên nhiều phiên bản phần mềm và các loại phiên bản EC2 khác nhau. Những script này được lưu trữ trong repository repro-collection, một framework mã nguồn mở, có khả năng mở rộng, được thiết kế cho mục đích kiểm thử hiệu năng dựa trên các workload thực tế thay vì các micro-benchmark.
+Framework này được xây dựng để cung cấp một chuẩn tham chiếu đo lường hiệu năng có thể sử dụng trên nhiều tổ chức, hiện tập trung chủ yếu vào MySQL và đang được sử dụng tích cực trong các cuộc trao đổi với các nhà phát triển và maintainer của Linux Kernel. Ngoài ra, nó còn hỗ trợ theo dõi bất kỳ tác động hiệu năng nào phát sinh từ các thay đổi mã nguồn của MySQL.
+Các script trong repository này đảm nhận việc thiết lập một cơ sở dữ liệu MySQL để tiến hành kiểm thử, cùng với một load generator chạy benchmark HammerDB.
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+Đối với bài benchmark này, tôi sử dụng một instance r6a.24xlarge làm load generator, và các instance r6a.xlarge, r7a.xlarge, và r8a.xlarge làm máy chủ cơ sở dữ liệu MySQL, tất cả đều được triển khai trong cùng một AWS Availability Zone (AZ). Tôi chọn cấu hình trong một AZ duy nhất để giảm thiểu độ biến thiên độ trễ có thể phát sinh khi lưu lượng phải đi qua nhiều AZ. Đây không phải là cấu hình mô phỏng môi trường production, và tôi rất khuyến nghị sử dụng nhiều AZ đối với các workload chạy trong môi trường production.
+Mỗi instance MySQL được kiểm thử độc lập bằng cùng một load generator HammerDB. Mỗi bài kiểm thử được chạy ba lần và kết quả được tính trung bình trên ba lần chạy đó. Sơ đồ kiến trúc được minh họa trong hình sau:
 
----
+![](/static/images/blog-1/image-1.png)
 
-## Core microservice
+### Kết quả tổng thể HammerDB
+Các phiên bản R8a cho thấy hiệu năng vượt trội trong benchmark HammerDB đối với cơ sở dữ liệu MySQL. Ở hạng mục điểm tổng thể của HammerDB, các phiên bản R8a đạt điểm cao hơn 55% so với R7a và cao hơn 74% so với R6a.
 
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
+![](/static/images/blog-1/image-2.png)
 
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+### Kiểm thử số giao dịch mỗi phút của HammerDB
+Các phiên bản R8a cũng thể hiện mức cải thiện đáng kể ở hạng mục này. So với các phiên bản R7a thế hệ trước, R8a cho hiệu năng cao hơn 32%. Khi so với các phiên bản R6a, R8a đạt mức cải thiện lên tới 63%.
 
----
+![](/static/images/blog-1/image-3.jpg)
 
-## Front door microservice
+### Kết quả độ trễ P99 của HammerDB
+Các phiên bản R8a cho thấy mức cải thiện rõ rệt về độ trễ P99, phản ánh hiệu quả từ bộ xử lý AMD EPYC thế hệ thứ 5 cùng với băng thông bộ nhớ cao hơn. R8a đạt mức giảm 14% độ trễ so với R7a và giảm 25% độ trễ so với R6a.
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
+![](/static/images/blog-1/image-4.png)
 
 ---
 
-## Staging ER7 microservice
-
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
-
----
-
-## Tính năng mới trong giải pháp
-
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+## Kết luận
+Phiên bản R8a, được xây dựng trên nền tảng AWS Nitro System với các Nitro Cards thế hệ thứ sáu, là lựa chọn lý tưởng cho các workload cần hiệu năng cao, sử dụng nhiều bộ nhớ — ví dụ như cơ sở dữ liệu SQL/NoSQL, cache in-memory quy mô web phân tán, database in-memory, phân tích dữ liệu lớn thời gian thực (real-time big data analytics), và các ứng dụng EDA (Electronic Design Automation).
+Với 12 kích cỡ khác nhau (bao gồm 2 cỡ bare-metal), R8a phù hợp từ các ứng dụng nhỏ đến các hệ thống quy mô lớn. R8a đã được chứng nhận SAP và cung cấp 38% SAPS nhiều hơn so với R7a.
+Nếu bạn hiện đang dùng các instance R6a (thế hệ 6), bạn nên di chuyển lên R8a để tận dụng lợi ích rõ rệt về giá-hiệu năng. Việc duy trì hạ tầng hiện đại cũng giúp giảm chi phí vận hành và mang lại nhiều tính năng hơn cho khách hàng.

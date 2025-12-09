@@ -5,55 +5,38 @@ weight: 2
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
 
 ### Mục tiêu tuần 10:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Hoàn thiện trang user
+* Hoàn thiện trang staff
+
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc                                                                    | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- |------------------------------------------------------------------------------|--------------|-----------------|----------------|
+| 2   | - Liên kết API cho trang user (1)                                            | 10/11/2025   | 10/11/2025      |                |
+| 3   | - Liên kết API cho trang user (2)                                            | 11/11/2025   | 11/11/2025      |                |
+| 4   | - Liên kết API cho trang user (3): <br/> - Xây dựng giao diện cho role staff | 12/11/2025   | 12/11/2025      |                |
+| 5   | - Xây dựng giao diện cho role staff                                          | 13/11/2025   | 13/11/2025      |                |
+| 6   | - Liên kết API cho trang của role staff                                      | 14/11/2025   | 14/11/2025      |                |
 
 ### Kết quả đạt được tuần 10:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Hoàn thiện được trang user với các chức năng được triển khai đầy đủ:
+  * Cập nhật thông tin 
+  * Xác minh tài khoản 
+  * Quản lí phiên đấu giá: tạo mới, chỉnh sửa, huỷ bỏ, xem các phiên đang tham gia, theo dõi phiên đấu giá, xem lịch sử 
+  * Quản lí địa chỉ: tạo mới, cập nhật, xoá
+  * Quản lí ví: nạp tiền, chuyển khoản, rút tiền, xem lịch sử giao dịch 
+  * Quản lí đơn hàng: tạo mới, cập nhật thông tin, cập nhật trạng thái, gửi yêu cầu hoàn tiền
+  * Quản lí yêu cầu hỗ trợ: tạo mới, xem lịch sử
+  * Quản lí thông tin bảo mật: đổi mật khẩu, email, bật và tắt tính năng xác thực 2 bước 
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* Hoàn thiện được trang staff với các chức năng được triển khai đầy đủ:
+  * Quản lí người dùng: xem thông tin, cập nhật trạng thái xác minh, gỡ bỏ hạn chế tài khoản 
+  * Quản lí yêu cầu hỗ trợ: xem các yêu cầu hỗ trợ, giám sát đơn hàng, xử lí yêu cầu hoàn tiền       
+  
 
 

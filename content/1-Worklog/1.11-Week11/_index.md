@@ -1,57 +1,39 @@
 ---
-title: "Week 11 Worklog"
+title: "Worklog Week 11"
 date: "`r Sys.Date()`"
 weight: 2
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+
 
 
 ### Week 11 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Create admin page and complete it
+* Implement websocket to receive realtime message notifications from backend
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+### Tasks to implement this week:
+| Day | Task                                                                                                                                              | Start Date | End Date   | Resources |
+|-----|---------------------------------------------------------------------------------------------------------------------------------------------------|------------|------------|-----------|
+| Mon | - Create admin page <br/> - Link APIs                                                                                                             | 17/11/2025 | 17/11/2025 |           |
+| Tue | - Implement websocket to receive realtime notifications from backend <br/> - Update frontend interface to fit information needing display         | 18/11/2025 | 18/11/2025 |           |
+| Wed | - Fix websocket error when receiving message from backend, update data when receiving message from backend                                        | 19/11/2025 | 19/11/2025 |           |
+| Thu | - Fix backend error when sending message to frontend, reconfigure websocket to allow frontend to subscribe to websocket                           | 20/11/2025 | 20/11/2025 |           |
+| Fri | - Configure, fix json error with redis in backend causing display error in frontend <br/> - Update auction detail page interface in frontend      | 21/11/2025 | 21/11/2025 |           |
 
 ### Week 11 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Completed admin page to manage system
+  * Manage categories: create new, edit, delete
+  * Manage addresses: create new, edit, delete
 
-* Successfully created and configured an AWS Free Tier account.
+* Implemented websocket to receive realtime messages from backend to update information quickly:
+  * Update information when there is a new auction
+  * Update price and end time, winner when a new bid is placed for an auction session
+  * Update wallet balance information and transaction history
+  * Update system notifications
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Configured websocket and redis:
+  * Allow frontend to receive private notifications
+  * Fix Json parse error when caching data with redis

@@ -1,39 +1,37 @@
 ---
-title: "Self-Assessment"
+title: "Self-evaluation"
 date: "`r Sys.Date()`"
 weight: 6
 chapter: false
 pre: " <b> 6. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
 
-During my internship at **[Company/Organization Name]** from **[start date]** to **[end date]**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.  
-I participated in **[briefly describe the main project or task]**, through which I improved my skills in **[list skills: programming, analysis, reporting, communication, etc.]**.  
 
-In terms of work ethic, I always strived to complete tasks well, complied with workplace regulations, and actively engaged with colleagues to improve work efficiency.
+During my internship at **AWS First Cloud AI Journey** from **September 8, 2025** to **November 30, 2025**, I had the opportunity to learn, practice, and apply the knowledge equipped at school into a real working environment.
+I participated in **[brief description of project or main work]**, thereby improving my skills in **Programming, analysis, project operation, communication**.
 
-To objectively reflect on my internship period, I would like to evaluate myself based on the following criteria:
+Regarding work style, I always try to complete tasks well, comply with regulations, and actively exchange with colleagues to improve work efficiency.
 
-| No. | Criteria                            | Description                                                                                      | Good | Fair | Average |
-| --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | ---- | ---- | ------- |
-| 1   | **Professional knowledge & skills** | Understanding of the field, applying knowledge in practice, proficiency with tools, work quality | ✅    | ☐    | ☐       |
-| 2   | **Ability to learn**                | Ability to absorb new knowledge and learn quickly                                                | ☐    | ✅    | ☐       |
-| 3   | **Proactiveness**                   | Taking initiative, seeking out tasks without waiting for instructions                            | ✅    | ☐    | ☐       |
-| 4   | **Sense of responsibility**         | Completing tasks on time and ensuring quality                                                    | ✅    | ☐    | ☐       |
-| 5   | **Discipline**                      | Adhering to schedules, rules, and work processes                                                 | ☐    | ☐    | ✅       |
-| 6   | **Progressive mindset**             | Willingness to receive feedback and improve oneself                                              | ☐    | ✅    | ☐       |
-| 7   | **Communication**                   | Presenting ideas and reporting work clearly                                                      | ☐    | ✅    | ☐       |
-| 8   | **Teamwork**                        | Working effectively with colleagues and participating in teams                                   | ✅    | ☐    | ☐       |
-| 9   | **Professional conduct**            | Respecting colleagues, partners, and the work environment                                        | ✅    | ☐    | ☐       |
-| 10  | **Problem-solving skills**          | Identifying problems, proposing solutions, and showing creativity                                | ☐    | ✅    | ☐       |
-| 11  | **Contribution to project/team**    | Work effectiveness, innovative ideas, recognition from the team                                  | ✅    | ☐    | ☐       |
-| 12  | **Overall**                         | General evaluation of the entire internship period                                               | ✅    | ☐    | ☐       |
+To objectively reflect on the internship process, I would like to self-evaluate based on the criteria below:
+
+
+| No. | Criteria                                 | Description                                                                             | Good | Fair | Average |
+|-----|------------------------------------------|-----------------------------------------------------------------------------------------|------|------|---------|
+| 1   | **Professional Knowledge and Skills**    | Industry understanding, applying knowledge to practice, tool usage skills, work quality | ✅    | ☐    | ☐       |
+| 2   | **Learning Ability**                     | Absorbing new knowledge, learning quickly                                               | ☐    | ✅    | ☐       |
+| 3   | **Proactiveness**                        | Self-learning, accepting tasks without waiting for instructions                         | ✅    | ☐    | ☐       |
+| 4   | **Sense of Responsibility**              | Completing work on time, ensuring quality                                               | ✅    | ☐    | ☐       |
+| 5   | **Discipline**                           | Adhering to time, regulations, work processes                                           | ✅    | ☐    | ☐       |
+| 6   | **Progressiveness**                      | Willing to receive feedback and improve oneself                                         | ✅    | ☐    | ☐       |
+| 7   | **Communication**                        | Presenting ideas, reporting work clearly                                                | ☐    | ✅    | ☐       |
+| 8   | **Teamwork**                             | Working effectively with colleagues, participating in groups                            | ☐    | ✅    | ☐       |
+| 9   | **Professional Conduct**                 | Respecting colleagues, partners, work environment                                       | ✅    | ☐    | ☐       |
+| 10  | **Problem Solving Mindset**              | Identifying problems, proposing solutions, creativity                                   | ✅    | ☐    | ☐       |
+| 11  | **Contribution to Project/Organization** | Work efficiency, improvement initiatives, recognition from team                         | ✅    | ☐    | ☐       |
+| 12  | **Overall**                              | General assessment of the entire internship process                                     | ✅    | ☐    | ☐       |
 
 ### Needs Improvement
 
-* Strengthen discipline and strictly comply with the rules and regulations of the company or any organization  
-* Improve problem-solving thinking  
-* Enhance communication skills in both daily interactions and professional contexts, including handling situations effectively
+
+* Learn to communicate better in daily communication and at work, handling situations

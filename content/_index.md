@@ -7,19 +7,14 @@ chapter: false
 
     
 # Internship Report
-
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
-
 ### Student Information:
-&emsp; **Full Name:** Nguyen Van A
+&emsp; **Full Name:** Vo Duc Hoang
 
-&emsp; **Phone Number:** 0989888999 
+&emsp; **Phone Number:** 0366934122
 
-&emsp; **Email:** Anguyenvan@gmail.com
+&emsp; **Email:** hoangvdsee182010@gmail.com
 
-&emsp; **University:** Ho Chi Minh City University of Technology and Education
+&emsp; **University:** FPT University Ho Chi Minh
 
 &emsp; **Major:** Information Technology
 
@@ -31,7 +26,7 @@ chapter: false
 
 &emsp; **Internship Duration:** From 12/08/2025 to 12/11/2025
 
-![Your profile picture](/images/avatar.png)
+![Your profile picture](/static/images/avatar.jpg)
 
 ### Report Content
 

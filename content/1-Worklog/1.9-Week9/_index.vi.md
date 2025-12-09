@@ -5,55 +5,47 @@ weight: 1
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
 
 ### Mục tiêu tuần 9:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Cấu hình websocket ở backend để gửi thông báo real time
+* Xây dưng giao diện cho hệ thống web đấu giá
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc                                                                                                                                                                                                                          | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                                        |
+| --- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|-----------------|-------------------------------------------------------|
+| 2   | - Triển khai websocket để gửi thông báo khi ở backend có các sự kiện mới                                                                                                                                                           | 3/11/2025    | 3/11/2025       | https://spring.io/guides/gs/messaging-stomp-websocket |
+| 3   | - Xây dựng các giao diện chính cho hệ thống web đấu giá: <br/> + Trang chủ <br/> + Trang đăng nhập <br/> + Trang đăng kí <br/> + Trang quên mật khẩu <br/> + Trang hiển thị danh sách đấu giá <br/> + Trang chi tiết đấu giá <br/> | 4/11/2025    | 4/11/2025       |                                                       |
+| 4   | - Xây dựng giao diện user cho hệ thống web đấu giá (1)                                                                                                                                                                             | 5/11/2025    | 6/11/2025       |                                                       |
+| 5   | - Xây dựng giao diện user cho hệ thống web đấu giá (2)                                                                                                                                                                             | 6/11/2025    | 6/11/2025       |                                                       |
+| 6   | - Liên kết API cho các trang chính                                                                                                                                                                                                 | 7/11/2025    | 7/11/2025       |                                                       |
 
 ### Kết quả đạt được tuần 9:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Cấu hình được WebSocket ở backend để gửi message realtime cho frontend khi có các sự kiện sau:
+  * Cập nhật phiên đấu giá mới.
+  * Cập nhật giá, trạng thái mới cho phiên đấu giá.
+  * Thông báo biến động số dư.
+  * Thông báo về đơn hàng sau khi đấu giá thành công.
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* Xây dựng được giao diện cho các trang chính, liên kết API thành công cho các use case:
+  * Đăng kí
+  * Đăng nhập 
+  * Đăng nhập với mã xác thực OTP
+  * Khôi phục mật khẩu đăng nhập
+  * Xem các phiên đấu giá hiện tại
+  * Xem chi tiết một phiên đấu giá
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
+* Xây dựng được giao diện user gồm các trang:
+  * Quản lí thông tin: Cập nhật thông tin, xác minh thông tin cá nhân.
+  * Quản lí các phiên đấu giá: Tạo mới, cập nhật, huỷ bỏ phiên.
+  * Quan lí địa chỉ: Tạo mới, cập nhật, xoá.
+  * Quản lí ví: Tạo mới, nạp tiền, chuyển tiền, rút tiền, thay đổi mã pin, thay đổi hạn mức, xem lịch sử giao dịch.
+  * Quản lí đơn hàng : Xem, chỉnh sửa, xác nhận trạng thái.
+  * Quản lí yêu cầu hỗ trợ: Tạo mới, xem.
+  * Quản lí thông tin bảo mật: Đổi mật khẩi, email, bật và tắt tính năng xác thực 2 bước.
+  
 
