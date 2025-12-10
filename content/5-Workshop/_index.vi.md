@@ -16,7 +16,7 @@ Hoàn thành việc cài đặt và cấu hình các dịch vụ AWS cần thi�
 ## Kiến trúc
 Chúng ta sẽ bám sát kiến trúc sau:
 
-![Auction System Architecture](/static/images/2-Proposal/auction-system-architecture.png)
+![Auction System Architecture](/images/2-Proposal/auction-system-architecture.png)
 
 ## Các bước thực hiện
 1. **Chuẩn bị (Preparation)**: Thiết lập VPC, IAM Role.

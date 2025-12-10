@@ -24,6 +24,6 @@ The system will run inside a Virtual Private Cloud (VPC) to ensure security and 
     - **NAT gateways**: `None` (or `1 per AZ` if EC2 in private subnet needs internet access to download packages, but to save costs in this lab, you can choose None or 1).
 5. Click **Create VPC**.
 
-![Create VPC](/static/images/project/vpc/vpc_create.png)
+![Create VPC](/images/project/vpc/vpc_create.png)
 
 6. Wait for the initialization process to complete.

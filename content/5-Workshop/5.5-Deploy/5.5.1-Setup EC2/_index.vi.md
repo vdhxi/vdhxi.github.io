@@ -17,11 +17,11 @@ Trong phần này, chúng ta sẽ thực hiện gán IAM Role cho EC2 và cài �
 1.  Truy cập vào **EC2 Dashboard**, chọn Instance mà bạn vừa khởi tạo.
 2.  Chọn **Actions** -> **Security** -> **Modify IAM role**.
 
-![Modify IAM Role](/static/images/project/ec2/iam%20role/iam-1.png)
+![Modify IAM Role](/images/project/ec2/iam%20role/iam-1.png)
 
 3.  Chọn IAM Role đã tạo ở các bước trước (ví dụ: `EC2RoleForSSM`) và nhấn **Update IAM role**.
 
-![Select IAM Role](/static/images/project/ec2/iam%20role/iam-2.png)
+![Select IAM Role](/images/project/ec2/iam%20role/iam-2.png)
 
 ## 2. Cài đặt môi trường
 
@@ -35,7 +35,7 @@ Chạy lệnh sau để cập nhật các gói phần mềm mới nhất:
 sudo dnf update -y
 ```
 
-![Update System](/static/images/project/ec2/ssh/update-system.png)
+![Update System](/images/project/ec2/ssh/update-system.png)
 
 ### 2.2. Cài đặt Java
 
@@ -44,7 +44,7 @@ sudo dnf update -y
 ```
 sudo dnf install java-21-amazon-corretto-headless -y
 ```
-![Install Java](/static/images/project/ec2/ssh/install-java.png)
+![Install Java](/images/project/ec2/ssh/install-java.png)
 
 Kiểm tra phiên bản Java sau khi cài đặt:
 
@@ -53,7 +53,7 @@ java -version
 ```
 
 
-![Check Install](/static/images/project/ec2/ssh/check-install.png)
+![Check Install](/images/project/ec2/ssh/check-install.png)
 
 ### 2.3. Cài đặt MariaDB Client và Khởi tạo Database
 
@@ -63,7 +63,7 @@ Cài đặt MariaDB client để có thể kết nối và thao tác với RDS.
 sudo dnf install mariadb105 -y
 ```
 
-![Install MariaDB](/static/images/project/ec2/ssh/install-maria-db.png)
+![Install MariaDB](/images/project/ec2/ssh/install-maria-db.png)
 
 Kết nối đến RDS database instance mà bạn đã tạo. Thay thế `<rds-endpoint>`, `<username>` bằng thông tin thực tế của bạn:
 
@@ -78,7 +78,7 @@ CREATE DATABASE tickets;
 SHOW DATABASES;
 ```
 
-![Create Database RDS](/static/images/project/ec2/ssh/create-database-rds.png)
+![Create Database RDS](/images/project/ec2/ssh/create-database-rds.png)
 
 ### 2.4. Cài đặt service để khởi chạy ứng dụng Java Springboot tự động
 
@@ -88,11 +88,11 @@ Chạy lệnh sau để tạo file service
 sudo nano /etc/systemd/system/<service-name>.service
 ```
 
-![Create service](/static/images/project/ec2/ssh/create-service-file.png)
+![Create service](/images/project/ec2/ssh/create-service-file.png)
 
 Nhập nội dung file service, cấu hình biến môi trường cho ứng dụng
 
-![Setup env](/static/images/project/ec2/ssh/env-setup.png)
+![Setup env](/images/project/ec2/ssh/env-setup.png)
 
 Dùng tổ hợp phím Ctrl + O, Enter và Ctrl + X để lưu lại và thoát
 
@@ -104,7 +104,7 @@ sudo systemctl restart <service-name>
 ```
 
 Kiểm tra trạng thái bằng lệnh `status`
-![Check status](/static/images/project/ec2/ssh/check-status-service.png)
+![Check status](/images/project/ec2/ssh/check-status-service.png)
 
 Dùng lệnh `enable` để service có thể tự động chạy cùng lúc mỗi khi EC2 instance start
 ```text

@@ -25,7 +25,7 @@ Dự án mang đến một nền tảng đấu giá trực tuyến dễ dàng ti
 ### 3. Kiến trúc giải pháp  
 Nền tảng áp dụng kiến trúc AWS để quản lý dữ liệu. Dữ liệu công khai được lưu trữ trong S3 public bucket và hiển thị đến người dùng qua CloudFront và S3 với ReactJS. Mọi thao tác xử lí được thực hiện trên EC2 với nền tảng Springboot. Các thông tin định danh được xử lí bởi Amazon Rekognition và Textract sau đó lưu trữ trong S3 private bucket 
 
-![Auction System Architecture](/static/images/2-Proposal/auction-system-architecture.png)
+![Auction System Architecture](/images/2-Proposal/auction-system-architecture.png)
 
 *Dịch vụ AWS sử dụng*  
 - *AWS VPC*: Tạo môi trường mạng ảo riêng tư.
@@ -105,4 +105,4 @@ Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/e
 ### 8. Kết quả kỳ vọng
 *Giá trị dài hạn*: Có thể tái sử dụng cho các dự án khác trong tương lai.
 
-Tham khảo thêm tại ![Proposal Template](/static/Proposal-Template.docx)
+Tham khảo thêm tại ![Proposal Template](/Proposal-Template.docx)

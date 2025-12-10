@@ -37,7 +37,7 @@ To access detailed performance statistics for local instance storage, complete t
 
 The following is an example output of the list command that lists the NVMe devices on the instance and their volume Serial Numbers (SN; masked in the below output for privacy). In this demonstration, consider that the local storage used by your application is `/dev/nvme1n1`.
 
-![](/static/images/blog-2/image-1.png)
+![](/images/blog-2/image-1.png)
 
 3. If you are using Amazon Linux 2023 version 2023.8.20250915 (or later) or Amazon Linux 2 2.0.20251014.0 (or later) you can proceed to Step 4 because `nvme-cli` will use the latest version. If you are using an earlier Amazon Linux version, update the `nvme-cli` using the following command, where `2023.8.20250915` can be replaced with the latest Amazon Linux 2023 version:
 
@@ -52,7 +52,7 @@ The following is an example output of the list command that lists the NVMe devic
 ```
 Example output:
 
-![](/static/images/blog-2/image-2.png)
+![](/images/blog-2/image-2.png)
 
 If you prefer output in a JSON format, you can provide the `-o json` parameter to the command.
 
@@ -63,12 +63,12 @@ If you prefer output in a JSON format, you can provide the `-o json` parameter t
 
 The following output (without the -o json parameter) shows cumulative read/write operations, read/write bytes, total processing time (read and write in microseconds), and duration (in microseconds) when application attempted to exceed the instance’s IOPS/throughput limits.
 
-![](/static/images/blog-2/image-3.png)
+![](/images/blog-2/image-3.png)
 
 It also displays read/write I/O latency histograms, with each row representing completed I/O operations within a specific bin of time (in microseconds).
 
-![](/static/images/blog-2/image-4-1.png)
-![](/static/images/blog-2/image-4-2.png)
+![](/images/blog-2/image-4-1.png)
+![](/images/blog-2/image-4-2.png)
 
 If you want to view the latency histograms across 5 different IO bands: (0, 512 Byte], (512B, 4KiB], (4KiB, 8KiB], (8KiB 32KiB], (32 KiB, MAX], you can provide `--details` or `-d` parameter to the command:
 
@@ -79,11 +79,11 @@ If you want to view the latency histograms across 5 different IO bands: (0, 512 
 
 The following image is an excerpt of the above command’s output, showing the additional latency histograms (read and write) of the 5 different IO bands.
 
-![](/static/images/blog-2/image-5-1.png)
-![](/static/images/blog-2/image-5-2.png)
-![](/static/images/blog-2/image-5-3.png)
-![](/static/images/blog-2/image-5-4.png)
-![](/static/images/blog-2/image-5-5.png)
+![](/images/blog-2/image-5-1.png)
+![](/images/blog-2/image-5-2.png)
+![](/images/blog-2/image-5-3.png)
+![](/images/blog-2/image-5-4.png)
+![](/images/blog-2/image-5-5.png)
 
 You can run the stats command at a per second granularity. You can also write scripts to pull the stats at a desired interval (every second or any other duration) with each subsequent output reflecting the updated cumulative totals for the metrics. Calculating the difference in the statistics across the last two outputs allows you to derive insight into the instance storage profile during the interval. Below is a sample script you can use to pull the stats at a default interval of 1 second or at your desired interval.
 
@@ -154,32 +154,32 @@ Example scenario: We choose to collect the statistics only once after noticing e
    
 Metric captured at time T:
 
-![](/static/images/blog-2/image-6.png)
+![](/images/blog-2/image-6.png)
 
 Metric captured at time T+40s:
 
-![](/static/images/blog-2/image-7.png)
+![](/images/blog-2/image-7.png)
 
 The following output shows Write IO histogram taken 40 seconds apart. We can discern that many write IOs fall into the 1ms – 2ms latency range, which is not expected for this application.
 
 Metric captured at time T:
 
-![](/static/images/blog-2/image-8.png)
+![](/images/blog-2/image-8.png)
 
 Metric captured at time T+40s:
 
-![](/static/images/blog-2/image-9.png)
+![](/images/blog-2/image-9.png)
 
 5. Analyze the **EC2 Instance Local Storage Performance Exceeded (us)** metric which shows total time (in microseconds) IOPS requests exceed volume limits. Ideally, the incremental count of this metric between two snapshot times should be minimal, as any value above 0 indicates that the workload demanded more IOPS than the volume could deliver.Example scenario: Comparing metrics 40 seconds apart shows that for more than 34 seconds, the application’s IOPS demands surpassed the IOPS 
 supported by the local instance storage. This explains elevated write latency: excess IOPS above what the underlying storage can physically handle queue the operations, increasing wait times. This indicates that the i3en.xlarge instance chosen to run this application cannot meet the application’s performance requirements, suggesting either upgrading to a larger instance size or re-evaluating the instance type itself.
 
 Metric captured at time T:
 
-![](/static/images/blog-2/image-10.png)
+![](/images/blog-2/image-10.png)
 
 Metric captured at time T+40s:
 
-![](/static/images/blog-2/image-11.png)
+![](/images/blog-2/image-11.png)
 
 It’s important to have the right instance size to avoid performance bottlenecks to your application. Refer to the [Amazon EC2 instance documentation](https://aws.amazon.com/ec2/instance-types/) for more information on the different instances and their storage size.
 
@@ -199,14 +199,14 @@ In this example scenario, your application performs small reads (typically <=4Ki
 
 2. **Confirm existence of overall IO latency degradation** – In the example scenario, examining overall IO latency, both read (left) and write (right) operations are showing higher than expected latency.
 
-![](/static/images/blog-2/image-12-1.png)
-![](/static/images/blog-2/image-12-2.png)
+![](/images/blog-2/image-12-1.png)
+![](/images/blog-2/image-12-2.png)
 
 3. **Examine the output for patterns across different IO size bands** – Analyzing latency by operation sizes shows small read operations (512 bytes to 4K), typically fast, are experiencing unexpected latency spikes while large 
 writes (32K+) show significant delays. Small reads should theoretically maintain good performance regardless of other I/O activities.
 
-![](/static/images/blog-2/image-13-1.png)
-![](/static/images/blog-2/image-13-1.png)
+![](/images/blog-2/image-13-1.png)
+![](/images/blog-2/image-13-1.png)
 
 The observed pattern indicates that the backed-up large write operations create system-wide congestion, affecting all I/O operations of types and sizes. 
 Despite the storage system’s capability to handle small reads efficiently, the queued large writes slow down both read and write operations at the application level.

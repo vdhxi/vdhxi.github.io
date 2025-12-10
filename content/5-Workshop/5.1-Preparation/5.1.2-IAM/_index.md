@@ -18,7 +18,7 @@ EC2 needs access to S3 to retrieve code/images, and permissions to call Rekognit
 4. In **Use case**, select **EC2**.
 5. Click **Next**.
 
-![IAM Step 1](/static/images/project/iam/iam-1.png)
+![IAM Step 1](/images/project/iam/iam-1.png)
 
 6. In the **Add permissions** step, search and select the following Policies:
     - `AmazonS3FullAccess` (Or a policy limited to the project bucket only).
@@ -29,4 +29,4 @@ EC2 needs access to S3 to retrieve code/images, and permissions to call Rekognit
 8. Name the Role `Auction-EC2-Role`.
 9. Review and click **Create role**.
 
-![IAM Step 2](/static/images/project/iam/iam-2.png)
+![IAM Step 2](/images/project/iam/iam-2.png)

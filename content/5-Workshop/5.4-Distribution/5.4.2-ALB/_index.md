@@ -14,7 +14,7 @@ ALB will distribute traffic to EC2 instances and handle SSL termination.
 
 ### 1. Create Security Group for ALB
 Allow HTTP (80) and HTTPS (443) from 0.0.0.0/0.
-![ALB SG](/static/images/project/alb/alb-sg.png)
+![ALB SG](/images/project/alb/alb-sg.png)
 
 ### 2. Create Target Group
 1. Create a Target Group of type **Instances**.
@@ -30,11 +30,11 @@ Allow HTTP (80) and HTTPS (443) from 0.0.0.0/0.
     - HTTP:80 -> Redirect to HTTPS (recommended).
     - HTTPS:443 -> Forward to Target Group.
 6. In the HTTPS listener section, select the created ACM Certificate.
-![SSL ABL 1](/static/images/project/alb/ssl-alb-1.png)
-![SSL ABL 2](/static/images/project/alb/ssl-alb-2.png)
-![SSL ABL 3](/static/images/project/alb/ssl-alb-3.png)
+![SSL ABL 1](/images/project/alb/ssl-alb-1.png)
+![SSL ABL 2](/images/project/alb/ssl-alb-2.png)
+![SSL ABL 3](/images/project/alb/ssl-alb-3.png)
 
 7. Click **Create load balancer**.
 
 After creating the Load Balancer, you can reconfigure the security group for the EC2 instance to only accept inbound rules from the Load Balancer.
-![Edit EC2 SG](/static/images/project/ec2/edit-ec2-sg.png)
+![Edit EC2 SG](/images/project/ec2/edit-ec2-sg.png)

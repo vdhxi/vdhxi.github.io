@@ -15,7 +15,7 @@ responsible AI, data architecture, and agentic workflows.
 The AWS Well-Architected Framework provides architectural best practices for designing and operating [generative AI](https://aws.amazon.com/generative-ai/) workloads on AWS. 
 The Generative AI Lens uses the Well-Architected Framework to outline the steps for performing a Well-Architected Framework review for your generative AI workloads.
 
-![](/static/images/blog-6/image-1.png)
+![](/images/blog-6/image-1.png)
 
 The Generative AI Lens provides a consistent approach for customers to evaluate architectures that use large language models (LLMs) to achieve their business goals. This lens addresses 
 common considerations relevant to model selection, prompt engineering, model customization, workload integration, and continuous improvement. Specifically excluded from the Generative AI Lens 
@@ -57,7 +57,7 @@ The Generative AI Lens now includes eight architecture scenarios. These scenario
 worker co-pilots, and multi-tenant generative AI service systems. The scenario section provides specific guidance for applying generative AI technologies to common business problems. The following image 
 is an example of one of the new scenarios now included in the Generative AI Lens.
 
-![](/static/images/blog-6/image-2.png)
+![](/images/blog-6/image-2.png)
 
 ## Who should use the Generative AI Lens?
 The Generative AI Lens is useful to many roles. Business leaders can use this lens to acquire a broader appreciation of the end-to-end implementation and benefits of generative AI. Data scientists and 

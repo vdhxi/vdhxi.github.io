@@ -17,11 +17,11 @@ To allow the EC2 instance to access other AWS services (e.g., Session Manager fo
 1.  Access **EC2 Dashboard**, select the Instance you just created.
 2.  Select **Actions** -> **Security** -> **Modify IAM role**.
 
-![Modify IAM Role](/static/images/project/ec2/iam%20role/iam-1.png)
+![Modify IAM Role](/images/project/ec2/iam%20role/iam-1.png)
 
 3.  Select the IAM Role created in previous steps (e.g., `EC2RoleForSSM`) and click **Update IAM role**.
 
-![Select IAM Role](/static/images/project/ec2/iam%20role/iam-2.png)
+![Select IAM Role](/images/project/ec2/iam%20role/iam-2.png)
 
 ## 2. Environment Setup
 
@@ -35,7 +35,7 @@ Run the following command to update to the latest software packages:
 sudo dnf update -y
 ```
 
-![Update System](/static/images/project/ec2/ssh/update-system.png)
+![Update System](/images/project/ec2/ssh/update-system.png)
 
 ### 2.2. Install Java
 
@@ -44,7 +44,7 @@ Our application runs on the Java platform, so installing the Java Development Ki
 ```
 sudo dnf install java-21-amazon-corretto-headless -y
 ```
-![Install Java](/static/images/project/ec2/ssh/install-java.png)
+![Install Java](/images/project/ec2/ssh/install-java.png)
 
 Check Java version after installation:
 
@@ -53,7 +53,7 @@ java -version
 ```
 
 
-![Check Install](/static/images/project/ec2/ssh/check-install.png)
+![Check Install](/images/project/ec2/ssh/check-install.png)
 
 ### 2.3. Install MariaDB Client and Initialize Database
 
@@ -63,7 +63,7 @@ Install MariaDB client to connect and interact with RDS.
 sudo dnf install mariadb105 -y
 ```
 
-![Install MariaDB](/static/images/project/ec2/ssh/install-maria-db.png)
+![Install MariaDB](/images/project/ec2/ssh/install-maria-db.png)
 
 Connect to the created RDS database instance. Replace `<rds-endpoint>`, `<username>` with your actual information:
 
@@ -78,7 +78,7 @@ CREATE DATABASE tickets;
 SHOW DATABASES;
 ```
 
-![Create Database RDS](/static/images/project/ec2/ssh/create-database-rds.png)
+![Create Database RDS](/images/project/ec2/ssh/create-database-rds.png)
 
 ### 2.4. Setup Service for Auto-starting Java Springboot Application
 
@@ -88,11 +88,11 @@ Run the following command to create a service file
 sudo nano /etc/systemd/system/<service-name>.service
 ```
 
-![Create service](/static/images/project/ec2/ssh/create-service-file.png)
+![Create service](/images/project/ec2/ssh/create-service-file.png)
 
 Enter the service file content, configure environment variables for the application
 
-![Setup env](/static/images/project/ec2/ssh/env-setup.png)
+![Setup env](/images/project/ec2/ssh/env-setup.png)
 
 Use key combination Ctrl + O, Enter and Ctrl + X to save and exit.
 
@@ -105,7 +105,7 @@ sudo systemctl restart <service-name>
 ```
 
 Check status using command `status`
-![Check status](/static/images/project/ec2/ssh/check-status-service.png)
+![Check status](/images/project/ec2/ssh/check-status-service.png)
 
 Use command `enable` so the service automatically runs every time the EC2 instance starts
 ```text

@@ -24,7 +24,7 @@ Hãy xem xét một công ty điện tử tiêu dùng thường xuyên tham gia 
 
 Hãy xem cách giải pháp của bài viết này sử dụng Distributed Map để xử lý các tệp PDF song song, trích xuất dữ liệu bằng [Amazon Textract](https://aws.amazon.com/textract/) và ghi đầu ra đã làm sạch trực tiếp vào S3 Tables. Kết quả là quá trình onboard dữ liệu sau sự kiện có thể mở rộng, không máy chủ, như được hiển thị trong hình sau.
 
-![](/static/images/blog-3/image-1.png)
+![](/images/blog-3/image-1.png)
 
 Quy trình xử lý dữ liệu như được hiển thị trong sơ đồ trước bao gồm các bước sau:
 
@@ -48,7 +48,7 @@ EventBridge Scheduler bắt đầu các quy trình làm việc Step Functions m�
 
 Sơ đồ sau minh họa quy trình làm việc này.
 
-![](/static/images/blog-3/image-2.png)
+![](/images/blog-3/image-2.png)
 
 Hãy xem xét từng bước của quy trình làm việc trước đó chi tiết hơn.
 
@@ -58,11 +58,11 @@ Step Functions sử dụng Distributed Map để xử lý các tệp PDF đồng
 
 Ảnh chụp màn hình sau của bảng điều khiển Step Functions hiển thị cấu hình cho Distributed Map. Ví dụ: chúng tôi đã cấu hình Distributed Map để xử lý 10 tệp PDF quan tâm của khách hàng trong một quy trình làm việc con duy nhất.
 
-![](/static/images/blog-3/image-3.png)
+![](/images/blog-3/image-3.png)
 
 Hình ảnh sau đây hiển thị một ví dụ về các tệp PDF được quét này, bao gồm thông tin khách hàng mà giải pháp của bài viết này xử lý.
 
-![](/static/images/blog-3/image-4.png)
+![](/images/blog-3/image-4.png)
 
 Mỗi quy trình làm việc con sau đó gọi [Amazon Textract AnalyzeDocument API](https://docs.aws.amazon.com/textract/latest/dg/API_AnalyzeDocument.html) với các truy vấn cụ thể để trích xuất thông tin khách hàng.
 
@@ -125,11 +125,11 @@ Firehose quản lý hiệu quả việc đệm dữ liệu, chuyển đổi đ�
 
 Firehose đơn giản hóa quá trình truyền dữ liệu bằng cách cấu hình luồng phân phối, chọn nguồn dữ liệu và đặt bảng Iceberg làm đích. Sau khi bạn thiết lập xong, luồng Firehose đã sẵn sàng để phân phối dữ liệu. Dữ liệu được phân phối có thể được truy vấn từ S3 Tables bằng cách sử dụng Athena, như được hiển thị trong ảnh chụp màn hình sau của bảng điều khiển Athena.
 
-![](/static/images/blog-3/image-5.png)
+![](/images/blog-3/image-5.png)
 
 Kết quả truy vấn bao gồm tất cả dữ liệu khách hàng đã xử lý từ các tệp PDF, như được hiển thị trong ảnh chụp màn hình sau.
 
-![](/static/images/blog-3/image-6.png)
+![](/images/blog-3/image-6.png)
 
 Sự tích hợp này thể hiện một giải pháp mạnh mẽ, không cần mã để chuyển đổi các biểu mẫu PDF thô thành dữ liệu có thể truy vấn, phong phú trong bảng Iceberg. Bạn có thể sử dụng dữ liệu này để phân tích thêm.
 

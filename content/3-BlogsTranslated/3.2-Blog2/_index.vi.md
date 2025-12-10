@@ -37,7 +37,7 @@ Các thống kê được trình bày dưới ba định dạng chính:
 
 Sau đây là ví dụ đầu ra của lệnh list liệt kê các thiết bị NVMe trên instance và Serial Numbers (SN) của volume (đã được che trong đầu ra bên dưới vì lý do riêng tư). Trong minh họa này, hãy coi rằng bộ lưu trữ cục bộ được ứng dụng của bạn sử dụng là `/dev/nvme1n1`.
 
-![](/static/images/blog-2/image-1.png)
+![](/images/blog-2/image-1.png)
 
 3. Nếu bạn đang sử dụng Amazon Linux 2023 phiên bản 2023.8.20250915 (hoặc mới hơn) hoặc Amazon Linux 2 2.0.20251014.0 (hoặc mới hơn), bạn có thể chuyển sang Bước 4 vì `nvme-cli` sẽ sử dụng phiên bản mới nhất. Nếu bạn đang sử dụng phiên bản Amazon Linux cũ hơn, hãy cập nhật `nvme-cli` bằng lệnh sau, trong đó `2023.8.20250915` có thể được thay thế bằng phiên bản Amazon Linux 2023 mới nhất:
 
@@ -52,7 +52,7 @@ Sau đây là ví dụ đầu ra của lệnh list liệt kê các thiết bị 
 ```
 Ví dụ đầu ra:
 
-![](/static/images/blog-2/image-2.png)
+![](/images/blog-2/image-2.png)
 
 Nếu bạn thích đầu ra ở định dạng JSON, bạn có thể cung cấp tham số `-o json` cho lệnh.
 
@@ -63,12 +63,12 @@ Nếu bạn thích đầu ra ở định dạng JSON, bạn có thể cung cấp
 
 Đầu ra sau đây (không có tham số -o json) hiển thị các hoạt động đọc/ghi tích lũy, số byte đọc/ghi, tổng thời gian xử lý (đọc và ghi tính bằng micro giây), và thời lượng (tính bằng micro giây) khi ứng dụng cố gắng vượt quá giới hạn IOPS/thông lượng của instance.
 
-![](/static/images/blog-2/image-3.png)
+![](/images/blog-2/image-3.png)
 
 Nó cũng hiển thị các biểu đồ phân phối độ trễ I/O đọc/ghi, với mỗi hàng đại diện cho các hoạt động I/O đã hoàn thành trong một khoảng thời gian cụ thể (tính bằng micro giây).
 
-![](/static/images/blog-2/image-4-1.png)
-![](/static/images/blog-2/image-4-2.png)
+![](/images/blog-2/image-4-1.png)
+![](/images/blog-2/image-4-2.png)
 
 Nếu bạn muốn xem các biểu đồ phân phối độ trễ trên 5 dải IO khác nhau: (0, 512 Byte], (512B, 4KiB], (4KiB, 8KiB], (8KiB 32KiB], (32 KiB, MAX], bạn có thể cung cấp tham số `--details` hoặc `-d` cho lệnh:
 
@@ -79,11 +79,11 @@ Nếu bạn muốn xem các biểu đồ phân phối độ trễ trên 5 dải 
 
 Hình ảnh sau đây là một đoạn trích từ đầu ra của lệnh trên, hiển thị các biểu đồ phân phối độ trễ bổ sung (đọc và ghi) của 5 dải IO khác nhau.
 
-![](/static/images/blog-2/image-5-1.png)
-![](/static/images/blog-2/image-5-2.png)
-![](/static/images/blog-2/image-5-3.png)
-![](/static/images/blog-2/image-5-4.png)
-![](/static/images/blog-2/image-5-5.png)
+![](/images/blog-2/image-5-1.png)
+![](/images/blog-2/image-5-2.png)
+![](/images/blog-2/image-5-3.png)
+![](/images/blog-2/image-5-4.png)
+![](/images/blog-2/image-5-5.png)
 
 Bạn có thể chạy lệnh stats ở độ chi tiết theo từng giây. Bạn cũng có thể viết script để lấy các thống kê theo khoảng thời gian mong muốn (mỗi giây hoặc bất kỳ thời lượng nào khác) với mỗi đầu ra tiếp theo phản ánh tổng số tích lũy cập nhật cho các chỉ số. Tính toán sự khác biệt trong các thống kê qua hai đầu ra cuối cùng cho phép bạn rút ra thông tin chi tiết về hồ sơ lưu trữ instance trong khoảng thời gian đó. Dưới đây là một script mẫu bạn có thể sử dụng để lấy các thống kê ở khoảng thời gian mặc định là 1 giây hoặc ở khoảng thời gian mong muốn của bạn.
 
@@ -154,32 +154,32 @@ Kịch bản ví dụ: Chúng tôi chọn thu thập thống kê chỉ một l�
    
 Chỉ số được ghi lại tại thời điểm T:
 
-![](/static/images/blog-2/image-6.png)
+![](/images/blog-2/image-6.png)
 
 Chỉ số được ghi lại tại thời điểm T+40s:
 
-![](/static/images/blog-2/image-7.png)
+![](/images/blog-2/image-7.png)
 
 Đầu ra sau đây hiển thị biểu đồ phân phối Write IO được thực hiện cách nhau 40 giây. Chúng ta có thể nhận thấy rằng nhiều write IO rơi vào phạm vi độ trễ 1ms – 2ms, điều này không được mong đợi cho ứng dụng này.
 
 Chỉ số được ghi lại tại thời điểm T:
 
-![](/static/images/blog-2/image-8.png)
+![](/images/blog-2/image-8.png)
 
 Chỉ số được ghi lại tại thời điểm T+40s:
 
-![](/static/images/blog-2/image-9.png)
+![](/images/blog-2/image-9.png)
 
 5. Phân tích chỉ số **EC2 Instance Local Storage Performance Exceeded (us)** hiển thị tổng thời gian (tính bằng micro giây) các yêu cầu IOPS vượt quá giới hạn volume. Lý tưởng nhất, số lượng tăng thêm của chỉ số này giữa hai thời điểm snapshot nên là tối thiểu, vì bất kỳ giá trị nào trên 0 đều chỉ ra rằng workload yêu cầu nhiều IOPS hơn mức volume có thể cung cấp. Kịch bản ví dụ: So sánh các chỉ số cách nhau 40 giây cho thấy rằng trong hơn 34 giây, nhu cầu IOPS của ứng dụng đã vượt qua IOPS 
 được hỗ trợ bởi bộ lưu trữ instance cục bộ. Điều này giải thích độ trễ ghi tăng cao: IOPS dư thừa trên mức bộ lưu trữ cơ bản có thể xử lý vật lý sẽ xếp hàng các hoạt động, làm tăng thời gian chờ. Điều này chỉ ra rằng instance i3en.xlarge được chọn để chạy ứng dụng này không thể đáp ứng các yêu cầu hiệu năng của ứng dụng, gợi ý việc nâng cấp lên kích thước instance lớn hơn hoặc đánh giá lại chính loại instance đó.
 
 Chỉ số được ghi lại tại thời điểm T:
 
-![](/static/images/blog-2/image-10.png)
+![](/images/blog-2/image-10.png)
 
 Chỉ số được ghi lại tại thời điểm T+40s:
 
-![](/static/images/blog-2/image-11.png)
+![](/images/blog-2/image-11.png)
 
 Điều quan trọng là phải có kích thước instance phù hợp để tránh các điểm nghẽn hiệu năng cho ứng dụng của bạn. Tham khảo [tài liệu về instance Amazon EC2](https://aws.amazon.com/ec2/instance-types/) để biết thêm thông tin về các instance khác nhau và kích thước lưu trữ của chúng.
 
@@ -199,14 +199,14 @@ Trong kịch bản ví dụ này, ứng dụng của bạn thực hiện các l�
 
 2. **Xác nhận sự tồn tại của sự suy giảm độ trễ IO tổng thể** – Trong kịch bản ví dụ, kiểm tra độ trễ IO tổng thể, cả hoạt động đọc (trái) và ghi (phải) đều đang hiển thị độ trễ cao hơn mong đợi.
 
-![](/static/images/blog-2/image-12-1.png)
-![](/static/images/blog-2/image-12-2.png)
+![](/images/blog-2/image-12-1.png)
+![](/images/blog-2/image-12-2.png)
 
 3. **Kiểm tra đầu ra cho các mẫu trên các dải kích thước IO khác nhau** – Phân tích độ trễ theo kích thước hoạt động cho thấy các hoạt động đọc nhỏ (512 byte đến 4K), thường nhanh, đang gặp phải các đợt tăng độ trễ bất ngờ trong khi các lần 
 ghi lớn (32K+) hiển thị sự chậm trễ đáng kể. Các lần đọc nhỏ về lý thuyết nên duy trì hiệu năng tốt bất kể các hoạt động I/O khác.
 
-![](/static/images/blog-2/image-13-1.png)
-![](/static/images/blog-2/image-13-1.png)
+![](/images/blog-2/image-13-1.png)
+![](/images/blog-2/image-13-1.png)
 
 Mẫu quan sát được chỉ ra rằng các hoạt động ghi lớn bị ứ đọng tạo ra sự tắc nghẽn toàn hệ thống, ảnh hưởng đến tất cả các hoạt động I/O thuộc mọi loại và kích thước. 
 Mặc dù khả năng của hệ thống lưu trữ để xử lý các lần đọc nhỏ một cách hiệu quả, các lần ghi lớn đang xếp hàng làm chậm cả hoạt động đọc và ghi ở cấp độ ứng dụng.

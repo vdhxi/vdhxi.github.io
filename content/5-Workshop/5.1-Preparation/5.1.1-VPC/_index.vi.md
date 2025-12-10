@@ -24,6 +24,6 @@ Hệ thống sẽ chạy bên trong một mạng riêng ảo (VPC) để đảm 
     - **NAT gateways**: `None` (hoặc `1 per AZ` nếu cần EC2 trong private subnet truy cập internet để tải package, nhưng để tiết kiệm chi phí trong bài lab này có thể chọn None hoặc 1). 
 5. Nhấn **Create VPC**.
 
-![Create VPC](/static/images/project/vpc/vpc_create.png)
+![Create VPC](/images/project/vpc/vpc_create.png)
 
 6. Đợi quá trình khởi tạo hoàn tất.

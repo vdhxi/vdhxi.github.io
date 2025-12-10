@@ -38,7 +38,7 @@ analytics and marketing campaign targeting.
 Let’s look at how this post’s solution uses Distributed Map to process PDFs in parallel, extract data using [Amazon Textract](https://aws.amazon.com/textract/), and write the cleaned output directly to S3 Tables. 
 The result is scalable, serverless post-event data onboarding, as shown in the following figure.
 
-![](/static/images/blog-3/image-1.png)
+![](/images/blog-3/image-1.png)
 
 The data processing workflow as shown in the preceding diagram includes the following steps:
 
@@ -64,7 +64,7 @@ performs the following three steps (note that these steps are steps 4, 5, 6, and
 
 The following diagram illustrates this workflow.
 
-![](/static/images/blog-3/image-2.png)
+![](/images/blog-3/image-2.png)
 
 Let’s look at each step of the preceding workflow in more detail.
 
@@ -78,11 +78,11 @@ to optimize performance and cost.
 
 The following screenshot of the Step Functions console shows the configuration for Distributed Map. For example, we have configured Distributed Map to process 10 customer interest PDFs in a single child workflow.
 
-![](/static/images/blog-3/image-3.png)
+![](/images/blog-3/image-3.png)
 
 The following image shows one example of these scanned PDFs, which includes the customer information that this post’s solution processes.
 
-![](/static/images/blog-3/image-4.png)
+![](/images/blog-3/image-4.png)
 
 Each child workflow then calls the [Amazon Textract AnalyzeDocument API](https://docs.aws.amazon.com/textract/latest/dg/API_AnalyzeDocument.html) with specific queries to extract customer information.
 
@@ -150,11 +150,11 @@ optimization—such as compaction and snapshot expiration—S3 Tables automatica
 Firehose simplifies the process of streaming data by configuring a delivery stream, selecting a data source, and setting an Iceberg table as the destination. After you’ve set it up, the Firehose stream is ready to deliver data. 
 The delivered data can be queried from S3 Tables by using Athena, as shown in the following screenshot of the Athena console.
 
-![](/static/images/blog-3/image-5.png)
+![](/images/blog-3/image-5.png)
 
 The query results include all processed customer data from the PDFs, as shown in the following screenshot.
 
-![](/static/images/blog-3/image-6.png)
+![](/images/blog-3/image-6.png)
 
 This integration demonstrates a powerful, code-free solution for transforming raw PDF forms into enriched, queryable data in an Iceberg table. You can use these data for further analysis.
 

@@ -47,22 +47,22 @@ The scripts in this repository handle setting up a MySQL database for testing, a
 For this benchmark, I used a r6a.24xlarge instance as the load generator, and r6a.xlarge, r7a.xlarge, and r8a.xlarge instances as the MySQL database servers, all deployed within the same AWS Availability Zone (AZ). I chose a single-AZ configuration to minimize latency variability that could arise from traffic crossing multiple AZs. This is not a production simulation configuration, and I highly recommend using multiple AZs for production workloads.
 Each MySQL instance was tested independently using the same HammerDB load generator. Each test was run three times, and the results were averaged over the three runs. The architecture diagram is illustrated in the following figure:
 
-![](/static/images/blog-1/image-1.png)
+![](/images/blog-1/image-1.png)
 
 ### Overall HammerDB Results
 R8a instances demonstrated superior performance in the HammerDB benchmark for MySQL databases. In the HammerDB overall score category, R8a instances scored 55% higher than R7a and 74% higher than R6a.
 
-![](/static/images/blog-1/image-2.png)
+![](/images/blog-1/image-2.png)
 
 ### HammerDB Transactions Per Minute (TPM) Testing
 R8a instances also showed significant improvement in this category. Compared to the previous generation R7a instances, R8a delivered 32% higher performance. When compared to R6a instances, R8a achieved an improvement of up to 63%.
 
-![](/static/images/blog-1/image-3.jpg)
+![](/images/blog-1/image-3.jpg)
 
 ### HammerDB P99 Latency Results
 R8a instances showed a clear improvement in P99 latency, reflecting the efficiency of the 5th Generation AMD EPYC processors along with higher memory bandwidth. R8a achieved a 14% reduction in latency compared to R7a and a 25% reduction compared to R6a.
 
-![](/static/images/blog-1/image-4.png)
+![](/images/blog-1/image-4.png)
 
 ---
 

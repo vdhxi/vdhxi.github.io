@@ -47,22 +47,22 @@ Các script trong repository này đảm nhận việc thiết lập một cơ s
 Đối với bài benchmark này, tôi sử dụng một instance r6a.24xlarge làm load generator, và các instance r6a.xlarge, r7a.xlarge, và r8a.xlarge làm máy chủ cơ sở dữ liệu MySQL, tất cả đều được triển khai trong cùng một AWS Availability Zone (AZ). Tôi chọn cấu hình trong một AZ duy nhất để giảm thiểu độ biến thiên độ trễ có thể phát sinh khi lưu lượng phải đi qua nhiều AZ. Đây không phải là cấu hình mô phỏng môi trường production, và tôi rất khuyến nghị sử dụng nhiều AZ đối với các workload chạy trong môi trường production.
 Mỗi instance MySQL được kiểm thử độc lập bằng cùng một load generator HammerDB. Mỗi bài kiểm thử được chạy ba lần và kết quả được tính trung bình trên ba lần chạy đó. Sơ đồ kiến trúc được minh họa trong hình sau:
 
-![](/static/images/blog-1/image-1.png)
+![](/images/blog-1/image-1.png)
 
 ### Kết quả tổng thể HammerDB
 Các phiên bản R8a cho thấy hiệu năng vượt trội trong benchmark HammerDB đối với cơ sở dữ liệu MySQL. Ở hạng mục điểm tổng thể của HammerDB, các phiên bản R8a đạt điểm cao hơn 55% so với R7a và cao hơn 74% so với R6a.
 
-![](/static/images/blog-1/image-2.png)
+![](/images/blog-1/image-2.png)
 
 ### Kiểm thử số giao dịch mỗi phút của HammerDB
 Các phiên bản R8a cũng thể hiện mức cải thiện đáng kể ở hạng mục này. So với các phiên bản R7a thế hệ trước, R8a cho hiệu năng cao hơn 32%. Khi so với các phiên bản R6a, R8a đạt mức cải thiện lên tới 63%.
 
-![](/static/images/blog-1/image-3.jpg)
+![](/images/blog-1/image-3.jpg)
 
 ### Kết quả độ trễ P99 của HammerDB
 Các phiên bản R8a cho thấy mức cải thiện rõ rệt về độ trễ P99, phản ánh hiệu quả từ bộ xử lý AMD EPYC thế hệ thứ 5 cùng với băng thông bộ nhớ cao hơn. R8a đạt mức giảm 14% độ trễ so với R7a và giảm 25% độ trễ so với R6a.
 
-![](/static/images/blog-1/image-4.png)
+![](/images/blog-1/image-4.png)
 
 ---
 

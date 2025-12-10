@@ -12,7 +12,7 @@ Chúng tôi vui mừng thông báo bản cập nhật cho [AWS Well-Architected 
 
 AWS Well-Architected Framework cung cấp các thực tiễn kiến trúc tốt nhất để thiết kế và vận hành các workload [generative AI](https://aws.amazon.com/generative-ai/) trên AWS. Generative AI Lens sử dụng Well-Architected Framework để phác thảo các bước thực hiện đánh giá Well-Architected Framework cho các workload generative AI của bạn.
 
-![](/static/images/blog-6/image-1.png)
+![](/images/blog-6/image-1.png)
 
 Generative AI Lens cung cấp một cách tiếp cận nhất quán cho khách hàng để đánh giá các kiến trúc sử dụng các mô hình ngôn ngữ lớn (LLM) để đạt được các mục tiêu kinh doanh của họ. Lens này giải quyết các cân nhắc chung liên quan đến lựa chọn mô hình, kỹ thuật prompt, tùy chỉnh mô hình, tích hợp workload và cải tiến liên tục. Loại trừ cụ thể khỏi Generative AI Lens là các thực tiễn tốt nhất liên quan đến đào tạo mô hình và các kỹ thuật tùy chỉnh mô hình nâng cao. Chúng tôi xác định các thực tiễn tốt nhất giúp bạn kiến trúc các ứng dụng và workload dựa trên đám mây của mình theo các nguyên tắc thiết kế AWS Well-Architected được thu thập từ việc hỗ trợ hàng nghìn triển khai của khách hàng.
 
@@ -40,7 +40,7 @@ Mới đối với generative AI lens là lời mở đầu về agentic AI. Cá
 ### Các kịch bản
 Generative AI Lens hiện bao gồm tám kịch bản kiến trúc. Các kịch bản này bao gồm một loạt các ứng dụng kinh doanh được hỗ trợ bởi generative AI phổ biến, bao gồm các trung tâm cuộc gọi tự động, đồng nghiệp ảo cho nhân viên tri thức và các hệ thống dịch vụ generative AI đa thuê bao (multi-tenant). Phần kịch bản cung cấp hướng dẫn cụ thể để áp dụng các công nghệ generative AI cho các vấn đề kinh doanh phổ biến. Hình ảnh sau đây là một ví dụ về một trong những kịch bản mới hiện được bao gồm trong Generative AI Lens.
 
-![](/static/images/blog-6/image-2.png)
+![](/images/blog-6/image-2.png)
 
 ## Ai nên sử dụng Generative AI Lens?
 Generative AI Lens hữu ích cho nhiều vai trò. Các nhà lãnh đạo doanh nghiệp có thể sử dụng lens này để có được sự đánh giá rộng hơn về việc triển khai end-to-end và lợi ích của generative AI. Các nhà khoa học dữ liệu và kỹ sư có thể đọc lens này để hiểu cách sử dụng, bảo mật và thu được thông tin chi tiết từ dữ liệu của họ ở quy mô lớn. Các nhà lãnh đạo rủi ro và tuân thủ có thể hiểu cách generative AI được triển khai có trách nhiệm bằng cách cung cấp sự tuân thủ các yêu cầu quy định và quản trị.
