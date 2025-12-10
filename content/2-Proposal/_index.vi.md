@@ -105,4 +105,4 @@ Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/e
 ### 8. Kết quả kỳ vọng
 *Giá trị dài hạn*: Có thể tái sử dụng cho các dự án khác trong tương lai.
 
-Tham khảo thêm tại ![Proposal Template](/Proposal-Template.docx)
+Tham khảo thêm tại [Proposal Template](/Proposal-Template.docx)

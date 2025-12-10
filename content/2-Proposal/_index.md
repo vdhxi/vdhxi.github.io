@@ -106,4 +106,4 @@ Costs can be viewed on [AWS Pricing Calculator](https://calculator.aws/#/estimat
 ### 8. Expected Results
 *Long-term Value*: Can be reused for other projects in the future.
 
-More information at ![Proposal Template](/Proposal-Template.docx)
+More information at [Proposal Template](/Proposal-Template.docx)
