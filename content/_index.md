@@ -12,7 +12,7 @@ chapter: false
 
 &emsp; **Phone Number:** 0366934122
 
-&emsp; **Email:** hoangvdsee182010@gmail.com
+&emsp; **Email:** hoangvdse182010@gmail.com
 
 &emsp; **University:** FPT University Ho Chi Minh
 
